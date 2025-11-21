@@ -1,0 +1,9 @@
+# Place your videos here
+
+Required videos:
+- apartment-hero.mp4 (1920x1080px, 15-30 seconds, under 10MB)
+- apartment-interior.mp4 (1920x1080px, 15-30 seconds, under 10MB)
+
+Videos are optional - the website will use fallback images if videos are not available.
+
+See ASSETS-GUIDE.md for compression tips and detailed specifications.
