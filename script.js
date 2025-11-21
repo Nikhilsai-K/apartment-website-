@@ -147,10 +147,33 @@ if (heroVideo) {
         console.log('Video failed to load, using fallback image');
         const videoBackground = document.querySelector('.video-background');
         if (videoBackground) {
-            videoBackground.style.background = 'url("assets/images/hero-fallback.jpg") center/cover no-repeat';
+            videoBackground.style.background = 'url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop&q=85") center/cover no-repeat';
         }
     });
+
+    // Also set initial fallback immediately if video can't load
+    heroVideo.onerror = function() {
+        const videoBackground = document.querySelector('.hero .video-background');
+        if (videoBackground) {
+            videoBackground.style.background = 'url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop&q=85") center/cover no-repeat';
+            videoBackground.style.backgroundSize = 'cover';
+            videoBackground.style.backgroundPosition = 'center';
+        }
+    };
 }
+
+// Set fallback for contact section video
+const contactVideos = document.querySelectorAll('.video-background-contact video');
+contactVideos.forEach(video => {
+    video.onerror = function() {
+        const videoBackground = video.closest('.video-background-contact');
+        if (videoBackground) {
+            videoBackground.style.background = 'url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop&q=85") center/cover no-repeat';
+            videoBackground.style.backgroundSize = 'cover';
+            videoBackground.style.backgroundPosition = 'center';
+        }
+    };
+});
 
 // ===== PARALLAX EFFECT =====
 window.addEventListener('scroll', () => {
