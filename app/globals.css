@@ -1,13 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-noto-serif-jp), ui-serif, Georgia, serif;
-
-  --color-primary: #1a1a1a;
-  --color-secondary: #d4af37;
-  --color-accent: #8b7355;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --primary: #1a1a1a;
