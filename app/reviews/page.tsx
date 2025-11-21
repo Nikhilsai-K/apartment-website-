@@ -2,7 +2,9 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import NavigationLight from '@/components/NavigationLight';
+import Footer from '@/components/Footer';
 
 const ratings = [
   { name: '最寄り駅の充実度', value: 4.0 },
@@ -51,17 +53,27 @@ export default function ReviewsPage() {
     <div className="bg-primary min-h-screen">
       <NavigationLight />
 
-      <section className="pt-32 pb-20 px-6" ref={ref}>
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold text-dark mb-4">口コミ</h1>
-            <p className="text-xl text-dark/70">Customer Reviews</p>
-          </motion.div>
+      {/* Hero */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden mt-20">
+        <Image
+          src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1920&h=1080&fit=crop&q=90"
+          alt="Reviews"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/70" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 text-center px-6"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-dark mb-4">口コミ</h1>
+          <p className="text-xl text-dark/80">Customer Reviews</p>
+        </motion.div>
+      </section>
 
+      <section className="py-16 px-6" ref={ref}>
+        <div className="max-w-7xl mx-auto">
           {/* Overall Rating */}
           <div className="grid md:grid-cols-12 gap-8 mb-16">
             <motion.div
@@ -135,6 +147,8 @@ export default function ReviewsPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

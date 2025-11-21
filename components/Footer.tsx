@@ -8,21 +8,21 @@ export default function Footer() {
 
   const footerLinks = {
     property: [
-      { label: '概要', href: '#about' },
-      { label: 'ギャラリー', href: '#gallery' },
-      { label: 'アクセス', href: '#location' },
-      { label: 'レビュー', href: '#reviews' },
+      { label: '概要', href: '/about' },
+      { label: 'ギャラリー', href: '/gallery' },
+      { label: 'アクセス', href: '/location' },
+      { label: 'レビュー', href: '/reviews' },
     ],
     services: [
-      { label: '購入相談', href: '#contact' },
-      { label: '無料査定', href: '#contact' },
-      { label: '資料請求', href: '#contact' },
-      { label: '内覧予約', href: '#contact' },
+      { label: '購入相談', href: '/contact' },
+      { label: '無料査定', href: '/contact' },
+      { label: '資料請求', href: '/contact' },
+      { label: '内覧予約', href: '/contact' },
     ],
   };
 
   return (
-    <footer className="bg-gradient-to-b from-black to-gray-900 border-t border-gray-800">
+    <footer className="bg-dark border-t border-secondary/20">
       <div className="container mx-auto px-6 py-16 md:py-20">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -33,7 +33,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <h3 className="text-2xl md:text-3xl font-bold font-montserrat tracking-wider mb-2">
+              <h3 className="text-2xl md:text-3xl font-bold font-montserrat tracking-wider mb-2 text-white">
                 THE PARK HOUSE
                 <span className="text-secondary block mt-1 font-serif">東銀座</span>
               </h3>
@@ -45,7 +45,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-gray-400 mb-4 leading-relaxed"
+              className="text-white/70 mb-4 leading-relaxed"
             >
               〒104-0041
               <br />
@@ -57,7 +57,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="space-y-2 text-sm text-gray-400"
+              className="space-y-2 text-sm text-white/70"
             >
               <p>
                 <span className="text-secondary font-semibold">管理:</span> 三菱地所コミュニティ
@@ -84,7 +84,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-white/60 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
                   >
                     {link.label}
                   </Link>
@@ -106,7 +106,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-white/60 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
                   >
                     {link.label}
                   </Link>
@@ -122,18 +122,18 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="pt-8 border-t border-gray-800"
+          className="pt-8 border-t border-secondary/20"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400 text-center md:text-left">
+            <p className="text-sm text-white/70 text-center md:text-left">
               &copy; {currentYear} The Park House Higashi-Ginza. All rights reserved.
             </p>
 
             {/* Social/Quick Links */}
             <div className="flex gap-6">
               <Link
-                href="#home"
-                className="text-gray-400 hover:text-secondary transition-colors duration-300"
+                href="/"
+                className="text-white/70 hover:text-secondary transition-colors duration-300"
               >
                 <span className="text-sm tracking-wide">トップへ戻る ↑</span>
               </Link>
