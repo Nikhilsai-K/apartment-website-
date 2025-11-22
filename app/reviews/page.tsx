@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import NavigationLight from '@/components/NavigationLight';
@@ -32,56 +31,50 @@ const reviews = [
 
 export default function ReviewsPage() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
   const [animatedRatings, setAnimatedRatings] = useState(ratings.map(() => 0));
 
   useEffect(() => {
-    if (isInView) {
-      ratings.forEach((rating, index) => {
-        setTimeout(() => {
-          setAnimatedRatings((prev) => {
-            const newRatings = [...prev];
-            newRatings[index] = rating.value;
-            return newRatings;
-          });
-        }, 500 + index * 150);
-      });
-    }
-  }, [isInView]);
+    ratings.forEach((rating, index) => {
+      setTimeout(() => {
+        setAnimatedRatings((prev) => {
+          const newRatings = [...prev];
+          newRatings[index] = rating.value;
+          return newRatings;
+        });
+      }, 500 + index * 150);
+    });
+  }, []);
 
   return (
-    <div className="bg-primary min-h-screen">
+    <div className="bg-white min-h-screen">
       <NavigationLight />
 
-      {/* Hero */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden mt-20">
+      {/* Clean Header */}
+      <section className="pt-32 pb-16 px-6 bg-primary">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-light text-dark mb-3 tracking-tight">口コミ</h1>
+          <p className="text-sm text-dark/60 uppercase tracking-widest">Resident Reviews</p>
+        </div>
+      </section>
+
+      {/* Hero Image */}
+      <section className="relative h-[50vh] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1920&h=1080&fit=crop&q=90"
+          src="/images/apart-5.png"
           alt="Reviews"
           fill
           className="object-cover"
+          quality={90}
         />
-        <div className="absolute inset-0 bg-primary/70" />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center px-6"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold text-dark mb-4">口コミ</h1>
-          <p className="text-xl text-dark/80">Customer Reviews</p>
-        </motion.div>
+        <div className="absolute inset-0 bg-black/20" />
       </section>
 
-      <section className="py-16 px-6" ref={ref}>
+      <section className="py-20 px-6 bg-white" ref={ref}>
         <div className="max-w-7xl mx-auto">
           {/* Overall Rating */}
-          <div className="grid md:grid-cols-12 gap-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              className="md:col-span-3 flex flex-col items-center justify-center bg-white rounded-2xl p-8 shadow-xl"
-            >
-              <div className="text-7xl font-bold text-secondary mb-4">4.0</div>
+          <div className="grid md:grid-cols-4 gap-8 mb-16">
+            <div className="flex flex-col items-center justify-center bg-primary p-8">
+              <div className="text-6xl font-light text-dark mb-4">4.0</div>
               <div className="flex gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className={`text-2xl ${i < 4 ? 'text-secondary' : 'text-gray-300'}`}>
@@ -89,29 +82,21 @@ export default function ReviewsPage() {
                   </span>
                 ))}
               </div>
-              <div className="text-dark/60 text-sm">総合評価</div>
-            </motion.div>
+              <div className="text-dark/60 text-xs uppercase tracking-wider">総合評価</div>
+            </div>
 
-            <div className="md:col-span-9 space-y-6 bg-white rounded-2xl p-8 shadow-xl">
+            <div className="md:col-span-3 space-y-5 bg-primary p-8">
               {ratings.map((rating, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="flex items-center gap-4"
-                >
-                  <div className="w-40 text-dark font-medium">{rating.name}</div>
-                  <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(animatedRatings[index] / 5) * 100}%` }}
-                      transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
-                      className="h-full bg-gradient-to-r from-secondary to-accent rounded-full"
+                <div key={index} className="flex items-center gap-4">
+                  <div className="w-40 text-dark font-light text-sm">{rating.name}</div>
+                  <div className="flex-1 h-2 bg-white/50 overflow-hidden">
+                    <div
+                      style={{ width: `${(animatedRatings[index] / 5) * 100}%` }}
+                      className="h-full bg-secondary transition-all duration-1000"
                     />
                   </div>
-                  <div className="w-12 text-right font-bold text-secondary">{rating.value}</div>
-                </motion.div>
+                  <div className="w-12 text-right font-light text-dark">{rating.value}</div>
+                </div>
               ))}
             </div>
           </div>
@@ -119,16 +104,9 @@ export default function ReviewsPage() {
           {/* Reviews */}
           <div className="grid md:grid-cols-2 gap-8">
             {reviews.map((review, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4 + index * 0.2 }}
-                whileHover={{ y: -8 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all"
-              >
+              <div key={index} className="bg-primary p-8 border-l-2 border-secondary">
                 <div className="flex items-start justify-between mb-4">
-                  <span className="text-sm text-dark/50">{review.date}</span>
+                  <span className="text-xs text-dark/50 uppercase tracking-wider">{review.date}</span>
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
                       <span
@@ -140,9 +118,9 @@ export default function ReviewsPage() {
                     ))}
                   </div>
                 </div>
-                <h4 className="text-xl font-bold text-dark mb-4">{review.title}</h4>
-                <p className="text-dark/70 leading-relaxed">{review.content}</p>
-              </motion.div>
+                <h4 className="text-xl font-light text-dark mb-4">{review.title}</h4>
+                <p className="text-dark/70 leading-relaxed font-light">{review.content}</p>
+              </div>
             ))}
           </div>
         </div>

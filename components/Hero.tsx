@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,109 +19,65 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000); // Change every 6 seconds
-
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Image Slideshow */}
-      <AnimatePresence mode="popLayout">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2.5, ease: "easeInOut" }} // Smooth crossfade with slow zoom reset
-          className="absolute inset-0"
+      {/* Image Slideshow - Simple Fade */}
+      {heroImages.map((img, idx) => (
+        <div
+          key={idx}
+          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          style={{ opacity: idx === currentIndex ? 1 : 0 }}
         >
           <Image
-            src={heroImages[currentIndex]}
-            alt="Apartment Exterior"
+            src={img}
+            alt="The Park House Higashi-Ginza"
             fill
             className="object-cover"
-            priority={true}
-            quality={90}
+            priority={idx === 0}
+            quality={95}
           />
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      ))}
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-black/20" /> {/* Base darkening */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" />
+      {/* Minimal Overlay */}
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Content */}
+      {/* Content - Clean & Professional */}
       <div className="relative h-full flex flex-col items-center justify-center px-6 text-center z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="max-w-5xl"
-        >
-          <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold font-serif mb-6 tracking-wider text-white drop-shadow-2xl"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          >
+        <div className="max-w-5xl">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-white mb-4 tracking-tight">
             ザ・パークハウス東銀座
-          </motion.h1>
-
-          <motion.p
-            className="text-xl md:text-3xl font-light text-white/90 mb-12 tracking-[0.2em] uppercase drop-shadow-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
+          </h1>
+          <p className="text-lg md:text-xl font-light text-white/80 mb-12 tracking-widest uppercase">
             The Park House Higashi-Ginza
-          </motion.p>
-        </motion.div>
+          </p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6 mt-8"
-        >
-          <Link href="/gallery">
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: '#d4af37' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-secondary/90 backdrop-blur-sm text-white font-medium text-lg rounded-full shadow-xl transition-all duration-300 tracking-wide border border-white/10"
-            >
-              View Gallery
-            </motion.button>
-          </Link>
+          {/* Clean CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+            <Link href="/gallery">
+              <button className="px-8 py-3 bg-white text-dark font-medium text-sm uppercase tracking-wider transition-colors hover:bg-white/90">
+                Gallery
+              </button>
+            </Link>
+            <Link href="/about">
+              <button className="px-8 py-3 bg-transparent text-white font-medium text-sm uppercase tracking-wider border border-white transition-colors hover:bg-white hover:text-dark">
+                Overview
+              </button>
+            </Link>
+          </div>
+        </div>
 
-          <Link href="/about">
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.2)' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-white/10 backdrop-blur-md text-white font-medium text-lg rounded-full border border-white/30 transition-all duration-300 tracking-wide"
-            >
-              Object Overview
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="text-white/70 text-xs flex flex-col items-center gap-3"
-          >
-            <span className="tracking-[0.2em] uppercase shadow-black drop-shadow-md">Scroll</span>
-            <div className="w-[1px] h-16 bg-gradient-to-b from-white/0 via-white/80 to-white/0"></div>
-          </motion.div>
-        </motion.div>
+        {/* Minimal Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="text-white/60 text-xs flex flex-col items-center gap-2">
+            <span className="tracking-widest uppercase text-[10px]">Scroll</span>
+            <div className="w-[1px] h-12 bg-white/30"></div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,92 +1,104 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 import NavigationLight from '@/components/NavigationLight';
+import Footer from '@/components/Footer';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=90', title: 'Living Room', desc: '広々としたリビング' },
-  { src: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1920&h=1080&fit=crop&q=90', title: 'Kitchen', desc: 'モダンなキッチン' },
-  { src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1920&h=1080&fit=crop&q=90', title: 'Bedroom', desc: 'エレガントな寝室' },
-  { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop&q=90', title: 'Exterior', desc: '建物外観' },
-  { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop&q=90', title: 'Lobby', desc: '高級ロビー' },
-  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop&q=90', title: 'Bathroom', desc: 'バスルーム' },
+const sliderImages = [
+  '/images/apart-0.png',
+  '/images/apart-1.png',
+  '/images/apart-2.png',
+  '/images/apart-3.png',
+  '/images/apart-4.png',
+  '/images/apart-5.png',
+];
+
+// Grid images with aspect ratio info (ratio: 'landscape' for 16:9, 'portrait' for 9:16)
+const gridImages = [
+  { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=90', ratio: 'landscape' },
+  { src: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1080&h=1920&fit=crop&q=90', ratio: 'portrait' },
+  { src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1920&h=1080&fit=crop&q=90', ratio: 'landscape' },
+  { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1080&h=1920&fit=crop&q=90', ratio: 'portrait' },
+  { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop&q=90', ratio: 'landscape' },
+  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1080&h=1920&fit=crop&q=90', ratio: 'portrait' },
+  { src: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1920&h=1080&fit=crop&q=90', ratio: 'landscape' },
+  { src: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=1080&h=1920&fit=crop&q=90', ratio: 'portrait' },
+  { src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&h=1080&fit=crop&q=90', ratio: 'landscape' },
 ];
 
 export default function GalleryPage() {
   return (
-    <div className="bg-primary min-h-screen">
+    <div className="bg-white min-h-screen">
       <NavigationLight />
 
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold text-dark mb-4">ギャラリー</h1>
-            <p className="text-xl text-dark/70">Gallery Showcase</p>
-          </motion.div>
+      {/* Hero Header */}
+      <section className="pt-32 pb-12 px-6 bg-primary">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-light text-dark mb-2 tracking-tight">ギャラリー</h1>
+          <p className="text-sm text-dark/60 uppercase tracking-widest">Gallery</p>
+        </div>
+      </section>
 
-          {/* 3D Swiper */}
+      {/* Slider Section */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-7xl mx-auto px-6">
           <Swiper
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
             effect="coverflow"
             grabCursor
             centeredSlides
             slidesPerView="auto"
-            coverflowEffect={{ rotate: 30, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
+            coverflowEffect={{ rotate: 20, stretch: 0, depth: 150, modifier: 1, slideShadows: false }}
             pagination={{ clickable: true }}
             navigation
-            autoplay={{ delay: 4000 }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
             loop
-            className="gallery-swiper mb-20"
+            className="gallery-swiper"
           >
-            {galleryImages.map((image, index) => (
-              <SwiperSlide key={index} className="!w-[80%] md:!w-[60%]">
-                <div className="relative aspect-video rounded-2xl overflow-hidden group">
-                  <Image
-                    src={image.src}
-                    alt={image.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-8 left-8">
-                      <h3 className="text-2xl font-bold text-white">{image.title}</h3>
-                      <p className="text-secondary">{image.desc}</p>
-                    </div>
-                  </div>
+            {sliderImages.map((image, index) => (
+              <SwiperSlide key={index} className="!w-[90%] md:!w-[70%] lg:!w-[60%]">
+                <div className="relative aspect-video overflow-hidden">
+                  <Image src={image} alt={`Gallery ${index + 1}`} fill className="object-cover" quality={95} />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
+      </section>
 
-          {/* Grid Gallery */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
-              <motion.div
+      {/* Grid Gallery - Masonry Style for Mixed Ratios */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {gridImages.map((image, index) => (
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="relative aspect-square rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                className={`relative overflow-hidden group cursor-pointer ${
+                  image.ratio === 'portrait' ? 'row-span-2' : 'col-span-2'
+                }`}
               >
-                <Image src={image.src} alt={image.title} fill className="object-cover" />
-              </motion.div>
+                <div className={`relative w-full ${image.ratio === 'portrait' ? 'aspect-[9/16]' : 'aspect-[16/9]'}`}>
+                  <Image
+                    src={image.src}
+                    alt={`Gallery Image ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    quality={90}
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
