@@ -111,19 +111,29 @@ export default function About() {
             className="flex flex-col justify-center"
           >
             <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              銀座の洗練された住空間
+              銀座を暮らしの庭にする
+              <br />
+              <span className="text-xl md:text-2xl font-light mt-2 block text-secondary">
+                The Park House Higashi-Ginza
+              </span>
             </h3>
-            <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-6">
-              東京の中心、銀座エリアに位置する「ザ・パークハウス東銀座」は、都会の喧騒を忘れさせる洗練された住空間を提供します。
+            <p className="text-lg leading-relaxed text-gray-300 mb-6">
+              三菱地所レジデンスが誇る高級分譲「ザ・パークハウス」シリーズ。
+              松屋銀座まで徒歩9分、歌舞伎座まで徒歩8分。銀座を支点にオンオフを自由自在に堪能できる立地です。
             </p>
-            <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-8">
-              13階建ての堂々たる佇まいは、周辺環境と調和しながらも存在感を放つデザインとなっています。2015年竣工、総戸数36戸の贅沢な邸宅です。
+            <p className="text-lg leading-relaxed text-gray-300 mb-6">
+              全戸南向きの設計で、室内は明るい空間となっています。
+              建物は都心の駅前でありながらも希少な三方向角地。前面の建物までは約60mもの距離があり採光と開放感を充分に確保しています。
+            </p>
+            <p className="text-sm text-gray-400 mb-8 border-l-2 border-secondary pl-4">
+              <span className="block mb-2 font-bold text-secondary">充実の設備仕様</span>
+              ガスシステムキッチン・浄水器・食洗機・ディスポーザー・オートバス・ミストサウナ・浴室乾燥機・洗浄便座・エアコン・床暖房
             </p>
 
             <div className="flex flex-wrap gap-4">
               <div className="bg-secondary/10 border border-secondary/30 px-6 py-3 rounded-lg">
                 <div className="text-secondary text-2xl font-bold">13</div>
-                <div className="text-sm text-gray-400">階建て</div>
+                <div className="text-sm text-gray-400">階建て (地下1階)</div>
               </div>
               <div className="bg-secondary/10 border border-secondary/30 px-6 py-3 rounded-lg">
                 <div className="text-secondary text-2xl font-bold">36</div>
@@ -131,7 +141,7 @@ export default function About() {
               </div>
               <div className="bg-secondary/10 border border-secondary/30 px-6 py-3 rounded-lg">
                 <div className="text-secondary text-2xl font-bold">2015</div>
-                <div className="text-sm text-gray-400">竣工年</div>
+                <div className="text-sm text-gray-400">11月竣工</div>
               </div>
             </div>
           </motion.div>

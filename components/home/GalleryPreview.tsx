@@ -6,10 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const previewImages = [
-  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=90',
-  'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&h=600&fit=crop&q=90',
-  'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop&q=90',
-  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop&q=90',
+  '/images/apart-0.png',
+  '/images/apart-1.png',
+  '/images/apart-2.png',
+  '/images/apart-3.png',
 ];
 
 export default function GalleryPreview() {

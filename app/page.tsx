@@ -1,7 +1,7 @@
 import NavigationLight from '@/components/NavigationLight';
-import HeroWithVideo from '@/components/HeroWithVideo';
-import AboutPreview from '@/components/home/AboutPreview';
-import GalleryPreview from '@/components/home/GalleryPreview';
+import Hero from '@/components/Hero';
+import AboutModern from '@/components/home/AboutModern';
+import GalleryModern from '@/components/home/GalleryModern';
 import LocationPreview from '@/components/home/LocationPreview';
 import ReviewsPreview from '@/components/home/ReviewsPreview';
 import ContactPreview from '@/components/home/ContactPreview';
@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <main className="bg-primary text-dark min-h-screen">
       <NavigationLight />
-      <HeroWithVideo />
-      <AboutPreview />
-      <GalleryPreview />
+      <Hero />
+      <AboutModern />
+      <GalleryModern />
       <LocationPreview />
       <ReviewsPreview />
       <ContactPreview />

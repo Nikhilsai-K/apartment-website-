@@ -47,9 +47,14 @@ export default function Footer() {
               transition={{ delay: 0.2 }}
               className="text-white/70 mb-4 leading-relaxed"
             >
-              〒104-0041
+              <span className="font-bold text-white block mb-2">お問い合わせ: リテラプロパティーズ銀座店</span>
+              〒104-0061
               <br />
-              東京都中央区新富2丁目7番7号
+              東京都中央区銀座7-15-11 銀座7ビルディング10F
+              <br />
+              TEL: 050-5527-2652
+              <br />
+              受付時間: 10:00～20:00【年中無休】
             </motion.p>
 
             <motion.div

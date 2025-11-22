@@ -18,29 +18,34 @@ gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   {
-    src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&q=85',
-    title: 'Spacious Living Room',
-    subtitle: '広々としたリビングルーム',
+    src: '/images/apart-0.png',
+    title: 'Apartment View',
+    subtitle: '外観・内観',
   },
   {
-    src: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1920&h=1080&fit=crop&q=85',
-    title: 'Modern Kitchen',
-    subtitle: 'モダンなキッチン',
+    src: '/images/apart-1.png',
+    title: 'Interior View 1',
+    subtitle: '内観',
   },
   {
-    src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1920&h=1080&fit=crop&q=85',
-    title: 'Elegant Bedroom',
-    subtitle: 'エレガントなベッドルーム',
+    src: '/images/apart-2.png',
+    title: 'Interior View 2',
+    subtitle: '内観',
   },
   {
-    src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop&q=85',
-    title: 'Building Night View',
-    subtitle: '夜景',
+    src: '/images/apart-3.png',
+    title: 'Interior View 3',
+    subtitle: '内観',
   },
   {
-    src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop&q=85',
-    title: 'Luxury Lobby',
-    subtitle: '高級ロビー',
+    src: '/images/apart-4.png',
+    title: 'Interior View 4',
+    subtitle: '内観',
+  },
+  {
+    src: '/images/apart-5.png',
+    title: 'Interior View 5',
+    subtitle: '内観',
   },
 ];
 

@@ -16,19 +16,14 @@ const stations = [
     lines: ['東京メトロ日比谷線'],
   },
   {
-    name: '宝町駅',
+    name: '銀座一丁目駅',
     time: '徒歩8分',
-    lines: ['東京メトロ銀座線', '都営浅草線'],
+    lines: ['東京メトロ有楽町線'],
   },
   {
     name: '東銀座駅',
     time: '徒歩8分',
     lines: ['東京メトロ日比谷線', '都営浅草線'],
-  },
-  {
-    name: '銀座一丁目駅',
-    time: '徒歩8分',
-    lines: ['東京メトロ有楽町線'],
   },
 ];
 
@@ -99,20 +94,18 @@ export default function Location() {
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.6 + index * 0.1 }}
                   whileHover={{ x: 8, scale: 1.02 }}
-                  className={`group bg-gradient-to-r ${
-                    station.highlight
+                  className={`group bg-gradient-to-r ${station.highlight
                       ? 'from-secondary/20 to-secondary/5 border-l-4 border-secondary'
                       : 'from-gray-800/50 to-gray-900/50 border-l-4 border-gray-600'
-                  } p-6 rounded-r-xl hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300`}
+                    } p-6 rounded-r-xl hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300`}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <h4 className="text-xl md:text-2xl font-bold group-hover:text-secondary transition-colors">
                       {station.name}
                     </h4>
                     <span
-                      className={`${
-                        station.highlight ? 'bg-secondary text-black' : 'bg-gray-700 text-white'
-                      } px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap ml-4`}
+                      className={`${station.highlight ? 'bg-secondary text-black' : 'bg-gray-700 text-white'
+                        } px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap ml-4`}
                     >
                       {station.time}
                     </span>
