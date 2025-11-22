@@ -1,7 +1,5 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 import Image from 'next/image';
 import NavigationLight from '@/components/NavigationLight';
 import Footer from '@/components/Footer';
@@ -24,102 +22,103 @@ const details = [
 ];
 
 export default function AboutPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <div className="bg-primary min-h-screen">
+    <div className="bg-white min-h-screen">
       <NavigationLight />
 
-      {/* Hero */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden mt-20">
+      {/* Clean Header */}
+      <section className="pt-32 pb-16 px-6 bg-primary">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-light text-dark mb-3 tracking-tight">物件概要</h1>
+          <p className="text-sm text-dark/60 uppercase tracking-widest">Property Overview</p>
+        </div>
+      </section>
+
+      {/* Hero Image */}
+      <section className="relative h-[60vh] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop&q=90"
-          alt="Building"
+          src="/images/apart-0.png"
+          alt="The Park House Higashi-Ginza"
           fill
           className="object-cover"
+          quality={95}
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/30 to-primary/70" />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center px-6 max-w-4xl"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold text-dark mb-6">物件概要</h1>
-          <p className="text-xl md:text-2xl text-dark/80 leading-relaxed">
-            東京の中心、銀座エリアに位置する洗練された住空間
-          </p>
-        </motion.div>
+        <div className="absolute inset-0 bg-black/20" />
       </section>
 
       {/* Main Content */}
-      <section ref={ref} className="py-20 px-6">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          {/* Description with Image */}
-          <div className="grid lg:grid-cols-2 gap-16 mb-20">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              className="space-y-6"
-            >
-              <h2 className="text-4xl font-bold text-dark mb-6">銀座の洗練された住空間</h2>
-              <p className="text-lg text-dark/70 leading-relaxed">
+          {/* Description */}
+          <div className="max-w-4xl mx-auto mb-20 text-center">
+            <h2 className="text-3xl md:text-4xl font-light text-dark mb-8 leading-tight">
+              東京の中心、銀座エリアに位置する洗練された住空間
+            </h2>
+            <div className="space-y-6 text-lg text-dark/70 leading-relaxed text-left">
+              <p>
                 「ザ・パークハウス東銀座」は、東京の中心・銀座エリアに位置する2015年竣工の高級レジデンスです。
                 地上13階建・地下1階、総戸数36戸という贅沢な造りで、都会の喧騒を忘れさせる洗練された住空間を提供します。
               </p>
-              <p className="text-lg text-dark/70 leading-relaxed">
+              <p>
                 RC（鉄筋コンクリート）造の堅牢な構造は、優れた耐震性と遮音性を実現。
                 商業地域に位置しながらも、落ち着いた住環境を保っています。
               </p>
-              <p className="text-lg text-dark/70 leading-relaxed">
+              <p>
                 新富町駅から徒歩わずか1分という抜群の立地。築地、宝町、東銀座、銀座一丁目と、
                 複数の駅が徒歩圏内にあり、都心各地へのアクセスが極めて便利です。
               </p>
-            </motion.div>
+            </div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              className="space-y-6"
-            >
-              <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=800&fit=crop&q=90"
-                  alt="Exterior"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop&q=90"
-                  alt="Interior"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
+          {/* Images Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-20">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="/images/apart-1.png"
+                alt="View 1"
+                fill
+                className="object-cover"
+                quality={90}
+              />
+            </div>
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="/images/apart-2.png"
+                alt="View 2"
+                fill
+                className="object-cover"
+                quality={90}
+              />
+            </div>
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="/images/apart-3.png"
+                alt="View 3"
+                fill
+                className="object-cover"
+                quality={90}
+              />
+            </div>
           </div>
 
           {/* Property Details Table */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl mb-16"
-          >
-            <h3 className="text-3xl font-bold text-dark mb-8 text-center">詳細情報</h3>
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-primary p-12 md:p-16">
+            <h3 className="text-3xl font-light text-dark mb-12 text-center">詳細情報</h3>
+            <div className="max-w-4xl mx-auto space-y-1">
               {details.map((detail, index) => (
                 <div
                   key={index}
-                  className="flex border-b border-secondary/20 pb-4"
+                  className="grid grid-cols-3 border-b border-dark/10 py-4 hover:bg-white/50 transition-colors"
                 >
-                  <div className="w-1/3 font-semibold text-secondary">{detail.label}</div>
-                  <div className="w-2/3 text-dark/80">{detail.value}</div>
+                  <div className="col-span-1 font-medium text-dark/60 text-sm uppercase tracking-wider">
+                    {detail.label}
+                  </div>
+                  <div className="col-span-2 text-dark font-light">{detail.value}</div>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
