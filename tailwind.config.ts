@@ -9,39 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#f5f1e8", // Cream/beige background
-        secondary: "#c8a882", // Warm tan
-        accent: "#a08968", // Soft brown
-        dark: "#3d3426", // Dark brown for text
-        lightbg: "#faf8f3", // Very light cream
-        overlay: "rgba(245, 241, 232, 0.95)", // Light overlay
+        primary: "#1a1918", // Deep Charcoal Background
+        secondary: "#d4a574", // Elegant Gold Accent
+        accent: "#3a3836", // Medium Charcoal
+        dark: "#f5f1eb", // Off-White Text
+        light: "#2a2826", // Lighter Charcoal for cards
+        card: "#2a2826", // Dark Card Background
+        overlay: "rgba(0, 0, 0, 0.8)", // Dark overlay for contrast
       },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
         serif: ["var(--font-noto-serif-jp)", "serif"],
       },
       animation: {
-        "fade-in": "fadeIn 1s ease-out",
-        "slide-up": "slideUp 0.8s ease-out",
-        "scale-in": "scaleIn 0.6s ease-out",
-        "slide-right": "slideRight 20s linear infinite",
+        "fade-in": "fadeIn 1.2s ease-out forwards",
+        "slide-up": "slideUp 1s ease-out forwards",
       },
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         slideUp: {
-          "0%": { transform: "translateY(100px)", opacity: "0" },
+          "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        scaleIn: {
-          "0%": { transform: "scale(0.8)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        slideRight: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
         },
       },
     },

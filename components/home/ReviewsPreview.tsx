@@ -22,13 +22,14 @@ export default function ReviewsPreview() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className="bg-primary">
+      <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="mb-16"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="h-[1px] w-16 bg-secondary" />
@@ -36,76 +37,57 @@ export default function ReviewsPreview() {
               Reviews
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-light text-dark mb-4">
-            入居者の声
-          </h2>
-        </motion.div>
-
-        {/* Rating Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="flex items-end gap-6 mb-20 pb-12 border-b border-dark/10"
-        >
-          <div className="text-7xl md:text-8xl font-light text-dark">4.0</div>
-          <div className="pb-4">
-            <div className="flex gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <span
-                  key={i}
-                  className={`text-2xl ${
-                    i < 4 ? 'text-secondary' : 'text-gray-300'
-                  }`}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-            <p className="text-sm text-dark/50">総合評価</p>
-          </div>
-        </motion.div>
-
-        {/* Reviews List */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.1, duration: 0.7 }}
-              className="group"
-            >
-              <div className="flex gap-1 mb-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl md:text-4xl font-light text-dark">
+              入居者の声
+            </h2>
+            {/* Compact Rating Summary */}
+            <div className="flex items-center gap-3">
+              <div className="text-2xl font-light text-dark">4.0</div>
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <span
                     key={i}
-                    className={`text-lg ${
-                      i < review.rating ? 'text-secondary' : 'text-gray-300'
-                    }`}
+                    className={`text-base ${i < 4 ? 'text-secondary' : 'text-dark/20'}`}
                   >
                     ★
                   </span>
                 ))}
               </div>
-              <h3 className="text-2xl font-light text-dark mb-3">
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Reviews List */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {reviews.map((review, index) => (
+            <div
+              key={index}
+              className="bg-light p-6 border-l-2 border-secondary/30 hover:border-secondary transition-colors duration-300"
+            >
+              <div className="flex gap-0.5 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <span
+                    key={i}
+                    className={`text-sm ${i < review.rating ? 'text-secondary' : 'text-dark/20'}`}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <h3 className="text-lg font-light text-dark mb-2">
                 {review.title}
               </h3>
-              <p className="text-dark/60 leading-relaxed">{review.text}</p>
-            </motion.div>
+              <p className="text-sm text-dark/60 leading-relaxed">{review.text}</p>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <Link href="/reviews">
             <button className="group inline-flex items-center gap-3 text-dark hover:text-secondary transition-colors duration-300">
-              <span className="text-sm uppercase tracking-[0.2em] border-b border-dark group-hover:border-secondary pb-1">
+              <span className="text-sm uppercase tracking-[0.2em] border-b border-dark group-hover:border-secondary pb-1 transition-colors">
                 All Reviews
               </span>
               <span className="text-xl transition-transform duration-300 group-hover:translate-x-2">
@@ -113,7 +95,7 @@ export default function ReviewsPreview() {
               </span>
             </button>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

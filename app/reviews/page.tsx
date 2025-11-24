@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
-import NavigationLight from '@/components/NavigationLight';
+import { useRef } from 'react';
+import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 const ratings = [
@@ -15,7 +14,7 @@ const ratings = [
 const reviews = [
   {
     date: '2023年10月31日',
-    rating: 4,
+    rating: 5,
     title: '銀座の端ですが他の路線が歩いて使える距離',
     content:
       '銀座の端ですが他の路線が歩いて使える距離にあります。全てが高いですが、高いなりのよさが享受できます。おしゃれな店が多く、ビジネス街でもあるので飲食店も豊富です。',
@@ -31,97 +30,111 @@ const reviews = [
 
 export default function ReviewsPage() {
   const ref = useRef(null);
-  const [animatedRatings, setAnimatedRatings] = useState(ratings.map(() => 0));
-
-  useEffect(() => {
-    ratings.forEach((rating, index) => {
-      setTimeout(() => {
-        setAnimatedRatings((prev) => {
-          const newRatings = [...prev];
-          newRatings[index] = rating.value;
-          return newRatings;
-        });
-      }, 500 + index * 150);
-    });
-  }, []);
 
   return (
-    <div className="bg-white min-h-screen">
-      <NavigationLight />
+    <div className="bg-primary min-h-screen text-dark">
+      <Navigation />
 
-      {/* Clean Header */}
-      <section className="pt-32 pb-16 px-6 bg-primary">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-light text-dark mb-3 tracking-tight">口コミ</h1>
-          <p className="text-sm text-dark/60 uppercase tracking-widest">Resident Reviews</p>
+      {/* Hero Header with Background */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&h=900&fit=crop&q=90"
+            alt="Community"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/85" />
+        </div>
+        <div className="section-container text-center relative z-10">
+          <p className="text-xs md:text-sm text-secondary uppercase tracking-[0.2em] mb-4">
+            Resident Reviews
+          </p>
+          <h1 className="text-4xl md:text-5xl font-serif text-dark tracking-wide">
+            口コミ
+          </h1>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section className="relative h-[50vh] overflow-hidden">
-        <Image
-          src="/images/apart-5.png"
-          alt="Reviews"
-          fill
-          className="object-cover"
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </section>
-
-      <section className="py-20 px-6 bg-white" ref={ref}>
-        <div className="max-w-7xl mx-auto">
-          {/* Overall Rating */}
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
-            <div className="flex flex-col items-center justify-center bg-primary p-8">
-              <div className="text-6xl font-light text-dark mb-4">4.0</div>
-              <div className="flex gap-1 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`text-2xl ${i < 4 ? 'text-secondary' : 'text-gray-300'}`}>
-                    ★
-                  </span>
-                ))}
-              </div>
-              <div className="text-dark/60 text-xs uppercase tracking-wider">総合評価</div>
-            </div>
-
-            <div className="md:col-span-3 space-y-5 bg-primary p-8">
-              {ratings.map((rating, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="w-40 text-dark font-light text-sm">{rating.name}</div>
-                  <div className="flex-1 h-2 bg-white/50 overflow-hidden">
-                    <div
-                      style={{ width: `${(animatedRatings[index] / 5) * 100}%` }}
-                      className="h-full bg-secondary transition-all duration-1000"
-                    />
-                  </div>
-                  <div className="w-12 text-right font-light text-dark">{rating.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Reviews */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {reviews.map((review, index) => (
-              <div key={index} className="bg-primary p-8 border-l-2 border-secondary">
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-xs text-dark/50 uppercase tracking-wider">{review.date}</span>
-                  <div className="flex gap-1">
+      {/* Main Content */}
+      <section className="bg-primary" ref={ref}>
+        <div className="section-container py-16 md:py-20">
+          {/* Overall Rating - Compact */}
+          <div className="mb-16">
+            <div className="bg-light p-8 flex items-center justify-between">
+              {/* Left: Rating Display */}
+              <div className="flex items-center gap-6">
+                <div className="text-4xl font-light text-dark">4.0</div>
+                <div>
+                  <div className="flex gap-0.5 mb-1">
                     {[...Array(5)].map((_, i) => (
-                      <span
-                        key={i}
-                        className={`text-lg ${i < review.rating ? 'text-secondary' : 'text-gray-300'}`}
-                      >
+                      <span key={i} className={`text-base ${i < 4 ? 'text-secondary' : 'text-dark/20'}`}>
                         ★
                       </span>
                     ))}
                   </div>
+                  <p className="text-xs text-dark/50 uppercase tracking-wider">Overall Rating</p>
                 </div>
-                <h4 className="text-xl font-light text-dark mb-4">{review.title}</h4>
-                <p className="text-dark/70 leading-relaxed font-light">{review.content}</p>
+              </div>
+
+              {/* Right: Category Ratings */}
+              <div className="hidden md:grid grid-cols-2 gap-x-8 gap-y-3">
+                {ratings.map((rating, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <span className="text-xs text-dark/70 font-light whitespace-nowrap">{rating.name}</span>
+                    <span className="text-sm text-secondary font-medium">{rating.value.toFixed(1)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Reviews */}
+          <div className="space-y-6">
+            <h2 className="text-xl md:text-2xl font-serif text-dark mb-8">
+              入居者の声
+            </h2>
+
+            {reviews.map((review, index) => (
+              <div
+                key={index}
+                className="bg-light p-6 border-l-2 border-secondary/30 hover:border-secondary transition-colors duration-300"
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div className="mb-3 md:mb-0">
+                    <div className="flex gap-0.5 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <span
+                          key={i}
+                          className={`text-sm ${i < review.rating ? 'text-secondary' : 'text-dark/20'}`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-lg font-light text-dark mb-2">
+                      {review.title}
+                    </h3>
+                  </div>
+                  <div className="text-xs text-dark/40 font-light">{review.date}</div>
+                </div>
+                <p className="text-sm text-dark/70 leading-relaxed font-light">
+                  {review.content}
+                </p>
               </div>
             ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-16 text-center">
+            <p className="text-sm md:text-base font-light text-dark/70 mb-6">
+              実際の住環境をぜひご自身の目でお確かめください
+            </p>
+            <a
+              href="/contact"
+              className="inline-block px-8 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-dark transition-all duration-300 text-xs tracking-[0.2em] uppercase"
+            >
+              内覧予約はこちら
+            </a>
           </div>
         </div>
       </section>

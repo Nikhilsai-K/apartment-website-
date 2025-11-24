@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import NavigationLight from '@/components/NavigationLight';
+import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 const details = [
@@ -23,39 +23,34 @@ const details = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-white min-h-screen">
-      <NavigationLight />
+    <div className="bg-primary min-h-screen text-dark">
+      <Navigation />
 
-      {/* Clean Header */}
-      <section className="pt-32 pb-16 px-6 bg-primary">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-light text-dark mb-3 tracking-tight">物件概要</h1>
-          <p className="text-sm text-dark/60 uppercase tracking-widest">Property Overview</p>
+      {/* Clean Header with Background */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&h=900&fit=crop&q=90"
+            alt="Modern Architecture"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/85" />
+        </div>
+        <div className="section-container text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-serif text-dark mb-4 tracking-wide">物件概要</h1>
+          <p className="text-xs md:text-sm text-secondary uppercase tracking-[0.2em]">Property Overview</p>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section className="relative h-[60vh] overflow-hidden">
-        <Image
-          src="/images/apart-0.png"
-          alt="The Park House Higashi-Ginza"
-          fill
-          className="object-cover"
-          quality={95}
-          priority
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </section>
-
       {/* Main Content */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-primary">
+        <div className="section-container py-20 md:py-32">
           {/* Description */}
-          <div className="max-w-4xl mx-auto mb-20 text-center">
-            <h2 className="text-3xl md:text-4xl font-light text-dark mb-8 leading-tight">
-              東京の中心、銀座エリアに位置する洗練された住空間
+          <div className="max-w-3xl mx-auto mb-24 text-center">
+            <h2 className="text-2xl md:text-4xl font-serif text-dark mb-10 leading-relaxed">
+              東京の中心、銀座エリアに位置する<br />洗練された住空間
             </h2>
-            <div className="space-y-6 text-lg text-dark/70 leading-relaxed text-left">
+            <div className="space-y-8 text-base md:text-lg text-dark/70 leading-loose text-left font-light">
               <p>
                 「ザ・パークハウス東銀座」は、東京の中心・銀座エリアに位置する2015年竣工の高級レジデンスです。
                 地上13階建・地下1階、総戸数36戸という贅沢な造りで、都会の喧騒を忘れさせる洗練された住空間を提供します。
@@ -72,49 +67,49 @@ export default function AboutPage() {
           </div>
 
           {/* Images Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-20">
-            <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="grid md:grid-cols-3 gap-4 mb-24">
+            <div className="relative aspect-[4/5] overflow-hidden bg-light">
               <Image
                 src="/images/apart-1.png"
                 alt="View 1"
                 fill
-                className="object-cover"
+                className="object-cover hover:scale-105 transition-transform duration-700"
                 quality={90}
               />
             </div>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden bg-light">
               <Image
                 src="/images/apart-2.png"
                 alt="View 2"
                 fill
-                className="object-cover"
+                className="object-cover hover:scale-105 transition-transform duration-700"
                 quality={90}
               />
             </div>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden bg-light">
               <Image
                 src="/images/apart-3.png"
                 alt="View 3"
                 fill
-                className="object-cover"
+                className="object-cover hover:scale-105 transition-transform duration-700"
                 quality={90}
               />
             </div>
           </div>
 
           {/* Property Details Table */}
-          <div className="bg-primary p-12 md:p-16">
-            <h3 className="text-3xl font-light text-dark mb-12 text-center">詳細情報</h3>
-            <div className="max-w-4xl mx-auto space-y-1">
+          <div className="bg-light p-8 md:p-20">
+            <h3 className="text-2xl md:text-3xl font-serif text-dark mb-12 text-center">詳細情報</h3>
+            <div className="max-w-3xl mx-auto border-t border-dark/10">
               {details.map((detail, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-3 border-b border-dark/10 py-4 hover:bg-white/50 transition-colors"
+                  className="grid grid-cols-1 md:grid-cols-3 border-b border-dark/10 py-5 hover:bg-white/5 transition-colors"
                 >
-                  <div className="col-span-1 font-medium text-dark/60 text-sm uppercase tracking-wider">
+                  <div className="md:col-span-1 font-medium text-dark/50 text-xs md:text-sm uppercase tracking-wider mb-1 md:mb-0">
                     {detail.label}
                   </div>
-                  <div className="col-span-2 text-dark font-light">{detail.value}</div>
+                  <div className="md:col-span-2 text-dark/90 font-light text-sm md:text-base">{detail.value}</div>
                 </div>
               ))}
             </div>

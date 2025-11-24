@@ -25,18 +25,17 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Image Slideshow with Ken Burns Effect */}
+      {/* Image Slideshow - Subtle Fade Only */}
       {heroImages.map((img, idx) => (
         <motion.div
           key={idx}
-          initial={{ scale: 1 }}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: idx === currentIndex ? 1 : 0,
-            scale: idx === currentIndex ? 1.05 : 1,
           }}
           transition={{
-            opacity: { duration: 1.5, ease: 'easeInOut' },
-            scale: { duration: 6, ease: 'linear' },
+            duration: 2,
+            ease: 'easeInOut',
           }}
           className="absolute inset-0"
         >
@@ -51,86 +50,66 @@ export default function Hero() {
         </motion.div>
       ))}
 
-      {/* Sophisticated Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+      {/* Professional Gradient Overlay */}
+      <div className="absolute inset-0 bg-primary/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/20" />
 
       {/* Content */}
       <div className="relative h-full flex flex-col items-center justify-center px-6 z-10">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
           className="text-center"
         >
           {/* Tagline */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mb-6"
-          >
-            <span className="text-white/70 text-sm md:text-base tracking-[0.3em] uppercase font-light">
+          <div className="mb-8">
+            <span className="text-white/80 text-sm md:text-base tracking-[0.2em] uppercase font-medium">
               Ginza Residence
             </span>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 tracking-tight leading-tight">
-            ザ・パークハウス
-            <br />
-            <span className="text-4xl md:text-6xl lg:text-7xl text-white/90">東銀座</span>
+          <h1 className="text-white mb-8 tracking-tight leading-tight font-light">
+            <span className="block text-5xl md:text-7xl lg:text-8xl mb-2">ザ・パークハウス</span>
+            <span className="block text-4xl md:text-6xl lg:text-7xl text-white/90">東銀座</span>
           </h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="text-base md:text-lg font-light text-white/80 tracking-wider max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="text-base md:text-lg font-light text-white/90 tracking-wider max-w-2xl mx-auto leading-relaxed">
             銀座の中心で、贅沢な暮らしを
-          </motion.p>
+          </p>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-3">
-            <span className="text-white/50 text-[10px] tracking-[0.2em] uppercase">Scroll</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-[1px] h-16 bg-gradient-to-b from-white/50 to-transparent"
-            />
-          </div>
-        </motion.div>
-
-        {/* Slide Indicators */}
+        {/* Scroll Indicator - Simplified */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-12 right-12 flex gap-2"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-white/60 text-[10px] tracking-[0.2em] uppercase">Scroll</span>
+            <div className="w-[1px] h-12 bg-white/40" />
+          </div>
+        </motion.div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-12 right-12 flex gap-3">
           {heroImages.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className="group relative"
+              className="group relative py-2"
               aria-label={`Go to slide ${idx + 1}`}
             >
               <div
-                className={`h-[1px] transition-all duration-500 ${
-                  idx === currentIndex ? 'w-12 bg-white' : 'w-8 bg-white/30'
-                }`}
+                className={`h-[2px] transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-white' : 'w-8 bg-white/30 hover:bg-white/50'
+                  }`}
               />
             </button>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

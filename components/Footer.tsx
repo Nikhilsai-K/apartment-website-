@@ -22,141 +22,87 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-dark border-t border-secondary/20">
-      <div className="container mx-auto px-6 py-16 md:py-20">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-light border-t border-dark/10 text-dark">
+      <div className="section-container py-16 md:py-24">
+        <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
-              <h3 className="text-2xl md:text-3xl font-bold font-montserrat tracking-wider mb-2 text-white">
+            <div className="mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold font-serif tracking-wider mb-2 text-dark">
                 THE PARK HOUSE
-                <span className="text-secondary block mt-1 font-serif">東銀座</span>
+                <span className="text-secondary block mt-1 font-serif text-xl">東銀座</span>
               </h3>
-              <div className="h-1 w-20 bg-secondary mb-4" />
-            </motion.div>
+              <div className="h-[1px] w-12 bg-secondary/50 mb-6" />
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-white/70 mb-4 leading-relaxed"
-            >
-              <span className="font-bold text-white block mb-2">お問い合わせ: リテラプロパティーズ銀座店</span>
-              〒104-0061
-              <br />
-              東京都中央区銀座7-15-11 銀座7ビルディング10F
-              <br />
-              TEL: 050-5527-2652
-              <br />
-              受付時間: 10:00～20:00【年中無休】
-            </motion.p>
+            <div className="text-dark/70 mb-8 leading-relaxed text-sm md:text-base font-light">
+              <p className="font-medium text-dark mb-2">お問い合わせ: リテラプロパティーズ銀座店</p>
+              <p>〒104-0061</p>
+              <p>東京都中央区銀座7-15-11 銀座7ビルディング10F</p>
+              <p className="mt-2">TEL: 050-5527-2652</p>
+              <p>受付時間: 10:00～20:00【年中無休】</p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="space-y-2 text-sm text-white/70"
-            >
+            <div className="space-y-2 text-xs md:text-sm text-dark/50 font-light">
               <p>
-                <span className="text-secondary font-semibold">管理:</span> 三菱地所コミュニティ
+                <span className="text-dark/70 font-medium mr-2">管理:</span> 三菱地所コミュニティ
               </p>
               <p>
-                <span className="text-secondary font-semibold">分譲:</span> 三菱地所レジデンス
+                <span className="text-dark/70 font-medium mr-2">分譲:</span> 三菱地所レジデンス
               </p>
               <p>
-                <span className="text-secondary font-semibold">施工:</span> 南海辰村建設
+                <span className="text-dark/70 font-medium mr-2">施工:</span> 南海辰村建設
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* Property Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <h4 className="text-lg font-bold mb-6 text-secondary">物件情報</h4>
-            <ul className="space-y-3">
+          <div>
+            <h4 className="text-sm font-bold mb-6 text-secondary uppercase tracking-widest">物件情報</h4>
+            <ul className="space-y-4">
               {footerLinks.property.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-white/60 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-dark/60 hover:text-dark transition-colors duration-300 text-sm tracking-wide"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Services Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <h4 className="text-lg font-bold mb-6 text-secondary">サービス</h4>
-            <ul className="space-y-3">
+          <div>
+            <h4 className="text-sm font-bold mb-6 text-secondary uppercase tracking-widest">サービス</h4>
+            <ul className="space-y-4">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-white/60 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-dark/60 hover:text-dark transition-colors duration-300 text-sm tracking-wide"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="pt-8 border-t border-secondary/20"
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/70 text-center md:text-left">
-              &copy; {currentYear} The Park House Higashi-Ginza. All rights reserved.
-            </p>
+        <div className="pt-8 border-t border-dark/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-dark/40 tracking-wider">
+            &copy; {currentYear} The Park House Higashi-Ginza. All rights reserved.
+          </p>
 
-            {/* Social/Quick Links */}
-            <div className="flex gap-6">
-              <Link
-                href="/"
-                className="text-white/70 hover:text-secondary transition-colors duration-300"
-              >
-                <span className="text-sm tracking-wide">トップへ戻る ↑</span>
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Decorative Element */}
-        <div className="mt-12 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
-            className="w-16 h-16 border-2 border-secondary/30 rounded-full flex items-center justify-center"
+          <Link
+            href="/"
+            className="text-dark/40 hover:text-dark transition-colors duration-300 text-xs tracking-widest uppercase"
           >
-            <div className="w-8 h-8 bg-secondary/20 rounded-full" />
-          </motion.div>
+            Back to Top
+          </Link>
         </div>
       </div>
     </footer>

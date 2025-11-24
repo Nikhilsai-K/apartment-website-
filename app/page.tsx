@@ -1,4 +1,4 @@
-import NavigationLight from '@/components/NavigationLight';
+import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutModern from '@/components/home/AboutModern';
 import GalleryModern from '@/components/home/GalleryModern';
@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <main className="bg-primary text-dark min-h-screen">
-      <NavigationLight />
+      <Navigation />
       <Hero />
       <AboutModern />
       <GalleryModern />

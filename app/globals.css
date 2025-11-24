@@ -3,10 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --primary: #f5f1e8;
-  --secondary: #c8a882;
-  --accent: #a08968;
-  --dark: #3d3426;
+  /* Color Palette - Modern Dark Luxury Theme */
+  --primary: #1a1918;
+  /* Deep Charcoal Background */
+  --secondary: #d4a574;
+  /* Elegant Gold Accent */
+  --accent: #3a3836;
+  /* Medium Charcoal */
+  --dark: #f5f1eb;
+  /* Off-White Text */
+  --light: #2a2826;
+  /* Lighter Charcoal for cards */
+  --text-body: #e0e0e0;
+  /* Light Gray Text */
+  --bg-card: #2a2826;
+  /* Dark Card Background */
+
+  /* Typography Scale */
+  --font-h1: 3.5rem;
+  --font-h2: 2.5rem;
+  --font-h3: 2rem;
+  --font-h4: 1.5rem;
+  --font-body: 1rem;
+  --font-caption: 0.875rem;
+
+  /* Spacing */
+  --section-padding: 6rem 1.5rem;
+  --container-width: 1280px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-h1: 2.5rem;
+    --font-h2: 2rem;
+    --font-h3: 1.75rem;
+    --section-padding: 4rem 1.25rem;
+  }
 }
 
 * {
@@ -22,8 +54,11 @@ html {
 
 body {
   overflow-x: hidden;
-  background: #faf8f3;
-  color: #3d3426;
+  background: var(--primary);
+  color: var(--dark);
+  font-family: var(--font-montserrat), sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -33,10 +68,41 @@ h4,
 h5,
 h6 {
   font-family: var(--font-noto-serif-jp), serif;
+  color: var(--dark);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+
+h2 {
+  font-size: var(--font-h2);
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+h4 {
+  font-size: var(--font-h4);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-body);
 }
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* Utility Classes for Consistency */
+.section-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
 }
 
 .smooth-scroll {
@@ -45,20 +111,20 @@ h6 {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f1e8;
+  background: var(--primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary);
-  border-radius: 5px;
+  background: #4a4a4a;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--secondary);
 }
 
 /* Lenis smooth scroll */
