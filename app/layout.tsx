@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Noto_Serif_JP, Montserrat } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
+import SplashScreen from '@/components/SplashScreen';
 
 const notoSerifJP = Noto_Serif_JP({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body
         className={`${notoSerifJP.variable} ${montserrat.variable} antialiased`}
       >
+        <SplashScreen />
         <SmoothScroll />
         {children}
       </body>
