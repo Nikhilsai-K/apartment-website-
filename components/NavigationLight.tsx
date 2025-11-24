@@ -40,11 +40,15 @@ export default function NavigationLight() {
           }`}
         >
           <div
-            className={`backdrop-blur-md rounded-2xl shadow-lg px-6 flex items-center justify-between transition-all duration-500 ${
-              isScrolled
-                ? 'bg-white/95 py-3'
-                : 'bg-white/20 py-5 border border-white/30'
+            className={`backdrop-blur-md rounded-2xl shadow-lg px-6 flex items-center justify-between transition-all duration-500 relative overflow-hidden ${
+              isScrolled ? 'py-3' : 'py-5'
             }`}
+            style={{
+              background: isScrolled
+                ? 'rgba(255, 255, 255, 0.95)'
+                : 'linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 100%)',
+              border: isScrolled ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
+            }}
           >
             {/* Logo - Collapses on scroll */}
             <AnimatePresence>
