@@ -32,21 +32,15 @@ export default function ContactPreview() {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="bg-secondary text-white px-10 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
-              >
+              <button className="group bg-white text-dark px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white/90 transition-all duration-300">
                 お問い合わせフォーム
-              </motion.button>
+              </button>
             </Link>
 
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="bg-white/20 backdrop-blur-sm border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-dark transition-all"
-              >
+              <button className="group bg-transparent border border-white text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-dark transition-all duration-300">
                 無料査定
-              </motion.button>
+              </button>
             </Link>
           </div>
         </motion.div>

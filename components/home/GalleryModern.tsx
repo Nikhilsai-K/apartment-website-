@@ -6,10 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const galleryImages = [
-  { src: '/images/apart-0.png', title: '外観' },
-  { src: '/images/apart-1.png', title: 'エントランス' },
-  { src: '/images/apart-2.png', title: 'リビングルーム' },
-  { src: '/images/apart-3.png', title: 'キッチン' },
+  { src: '/images/apart-0.png', title: '外観', subtitle: 'Exterior' },
+  { src: '/images/apart-1.png', title: 'エントランス', subtitle: 'Entrance' },
+  { src: '/images/apart-2.png', title: 'リビングルーム', subtitle: 'Living Room' },
+  { src: '/images/apart-3.png', title: 'キッチン', subtitle: 'Kitchen' },
 ];
 
 export default function GalleryModern() {
@@ -17,44 +17,51 @@ export default function GalleryModern() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-lightbg to-primary">
+    <section ref={ref} className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="mb-20"
         >
-          <span className="text-secondary text-sm uppercase tracking-[0.2em] font-semibold block mb-4">
-            Gallery
-          </span>
-          <h2 className="text-4xl md:text-6xl font-bold text-dark font-serif">
-            ギャラリー
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-[1px] w-16 bg-secondary" />
+            <span className="text-secondary text-xs uppercase tracking-[0.3em] font-medium">
+              Gallery
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-light text-dark">
+            空間の魅力
           </h2>
-          <p className="text-dark/70 mt-4 max-w-2xl mx-auto">
-            洗練された空間をご覧ください
-          </p>
         </motion.div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {/* Gallery Grid - Masonry Style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {galleryImages.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * index, duration: 0.6 }}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+              transition={{ delay: 0.15 * index, duration: 0.7 }}
+              className="group relative aspect-[4/3] overflow-hidden"
             >
               <Image
                 src={item.src}
                 alt={item.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-white text-2xl font-bold font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              {/* Subtle overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500" />
+
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <p className="text-white/60 text-xs uppercase tracking-wider mb-1">
+                  {item.subtitle}
+                </p>
+                <h3 className="text-white text-xl font-light tracking-wide">
                   {item.title}
                 </h3>
               </div>
@@ -62,21 +69,22 @@ export default function GalleryModern() {
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-16 text-center"
         >
           <Link href="/gallery">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-secondary hover:bg-accent text-white px-12 py-5 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
-            >
-              全ての写真を見る →
-            </motion.button>
+            <button className="group inline-flex items-center gap-3 text-dark hover:text-secondary transition-colors duration-300">
+              <span className="text-sm uppercase tracking-[0.2em] border-b border-dark group-hover:border-secondary pb-1">
+                View Full Gallery
+              </span>
+              <span className="text-xl transition-transform duration-300 group-hover:translate-x-2">
+                →
+              </span>
+            </button>
           </Link>
         </motion.div>
       </div>
