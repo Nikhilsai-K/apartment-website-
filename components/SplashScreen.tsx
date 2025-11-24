@@ -10,14 +10,14 @@ export default function SplashScreen() {
     // Set a minimum display time for the splash screen
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5 seconds
+    }, 1800); // 1.8 seconds
 
     // Also check if the page is fully loaded
     const handleLoad = () => {
       // Wait for a minimum time before hiding
       setTimeout(() => {
         setIsLoading(false);
-      }, 2500);
+      }, 1800);
     };
 
     if (document.readyState === 'complete') {
