@@ -17,28 +17,28 @@ export default function ContactPreview() {
         fill
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-dark/70" />
+      <div className="absolute inset-0 bg-dark/20" /> {/* Minimal fog - 20% */}
 
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
         >
-          <span className="text-secondary text-sm uppercase tracking-wider font-semibold">Contact</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">お問い合わせ</h2>
-          <p className="text-xl text-white/90 mb-12">
+          <span className="text-secondary text-sm uppercase tracking-wider font-bold drop-shadow-lg">Contact</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-dark mt-2 mb-6 drop-shadow-xl">お問い合わせ</h2>
+          <p className="text-xl text-dark/90 mb-12 font-medium drop-shadow-lg">
             物件に関するご質問、内覧のご希望など、お気軽にお問い合わせください
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/contact">
-              <button className="group bg-white text-dark px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white/90 transition-all duration-300">
+              <button className="group bg-dark text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-dark/90 transition-all duration-300 shadow-xl">
                 お問い合わせフォーム
               </button>
             </Link>
 
             <Link href="/contact">
-              <button className="group bg-transparent border border-white text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-dark transition-all duration-300">
+              <button className="group bg-transparent border-2 border-dark text-dark px-10 py-4 font-bold text-sm uppercase tracking-wider hover:bg-dark hover:text-white transition-all duration-300 shadow-lg">
                 無料査定
               </button>
             </Link>

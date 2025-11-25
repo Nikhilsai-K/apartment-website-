@@ -10,14 +10,14 @@ export default function SplashScreen() {
     // Set a minimum display time for the splash screen
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1800); // 1.8 seconds
+    }, 3800); // 3.8 seconds (added 2 more seconds)
 
     // Also check if the page is fully loaded
     const handleLoad = () => {
       // Wait for a minimum time before hiding
       setTimeout(() => {
         setIsLoading(false);
-      }, 1800);
+      }, 3800);
     };
 
     if (document.readyState === 'complete') {
@@ -36,9 +36,14 @@ export default function SplashScreen() {
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          initial={{ x: 0 }}
+          exit={{
+            x: '-100%'
+          }}
+          transition={{
+            duration: 2.5, // Slower slide for smoother transition
+            ease: [0.22, 1, 0.36, 1] // Smooth, gentle easing - no flash
+          }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
         >
           <div className="text-center">

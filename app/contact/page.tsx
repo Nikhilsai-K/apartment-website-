@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 export default function ContactPage() {
-  const ref = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,7 +30,7 @@ export default function ContactPage() {
     <div className="bg-primary min-h-screen text-dark">
       <Navigation />
 
-      {/* Clean Header with Background */}
+      {/* Hero Section - KEPT THE SAME */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -49,31 +49,69 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section ref={ref} className="bg-primary">
-        <div className="section-container py-20 md:py-32">
-          <div className="max-w-4xl mx-auto">
-            {/* Quick Actions */}
-            <div className="grid sm:grid-cols-2 gap-6 mb-20">
-              <button className="bg-light border border-dark/5 p-10 text-center transition-all duration-300 hover:border-secondary hover:shadow-2xl group">
-                <span className="block text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📞</span>
-                <span className="block text-xl font-serif text-dark mb-2">購入相談</span>
-                <span className="text-sm text-dark/50 font-light">お電話でのご相談はこちら</span>
-              </button>
-              <button className="bg-light border border-dark/5 p-10 text-center transition-all duration-300 hover:border-secondary hover:shadow-2xl group">
-                <span className="block text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">💰</span>
-                <span className="block text-xl font-serif text-dark mb-2">無料査定</span>
-                <span className="text-sm text-dark/50 font-light">物件の査定依頼はこちら</span>
-              </button>
+      <section className="bg-primary py-20 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="grid lg:grid-cols-5 gap-12">
+
+            {/* Contact Info Sidebar */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-2xl md:text-3xl font-serif text-dark mb-8">お問い合わせ先</h2>
+
+                {/* Contact Details */}
+                <div className="space-y-8">
+                  {/* Phone */}
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-dark/40 mb-3">電話</p>
+                    <a href="tel:050-5527-2652" className="text-xl md:text-2xl font-serif text-secondary">
+                      050-5527-2652
+                    </a>
+                    <p className="text-sm text-dark/60 mt-2">平日 10:00～20:00（年中無休）</p>
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-dark/40 mb-3">Email</p>
+                    <a href="mailto:info@parkhouse-ginza.jp" className="text-lg text-dark">
+                      info@parkhouse-ginza.jp
+                    </a>
+                  </div>
+
+                  {/* Apartment Address */}
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-dark/40 mb-3">Apartment Address</p>
+                    <p className="text-base text-dark/80 leading-relaxed">
+                      ザ・パークハウス東銀座<br />
+                      〒104-0041<br />
+                      東京都中央区新富2丁目7番7号
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-light p-8 md:p-16 shadow-2xl">
-              <h2 className="text-2xl font-serif text-dark mb-10 text-center">お問い合わせフォーム</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-light p-8 md:p-12 border border-dark/10"
+              >
+                <h3 className="text-2xl font-serif text-dark mb-8">お問い合わせフォーム</h3>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Name */}
                   <div>
-                    <label className="block text-xs font-medium mb-3 text-dark/60 uppercase tracking-widest">
-                      Name <span className="text-secondary">*</span>
+                    <label className="block text-sm font-medium mb-3 text-dark">
+                      お名前 <span className="text-secondary">*</span>
                     </label>
                     <input
                       type="text"
@@ -81,13 +119,15 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-4 bg-white border border-dark/10 focus:border-secondary focus:ring-0 transition-colors text-primary font-light placeholder:text-primary/40"
+                      className="w-full px-4 py-4 bg-primary border border-dark/10 focus:border-secondary focus:outline-none transition-colors text-dark placeholder:text-dark/40"
                       placeholder="山田 太郎"
                     />
                   </div>
+
+                  {/* Email */}
                   <div>
-                    <label className="block text-xs font-medium mb-3 text-dark/60 uppercase tracking-widest">
-                      Email <span className="text-secondary">*</span>
+                    <label className="block text-sm font-medium mb-3 text-dark">
+                      メールアドレス <span className="text-secondary">*</span>
                     </label>
                     <input
                       type="email"
@@ -95,53 +135,59 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-4 bg-white border border-dark/10 focus:border-secondary focus:ring-0 transition-colors text-primary font-light placeholder:text-primary/40"
+                      className="w-full px-4 py-4 bg-light/30 border-2 border-dark/10 focus:border-secondary focus:outline-none transition-colors text-dark placeholder:text-dark/30"
                       placeholder="example@email.com"
                     />
                   </div>
-                </div>
 
-                <div className="mb-8">
-                  <label className="block text-xs font-medium mb-3 text-dark/60 uppercase tracking-widest">Phone</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-4 bg-primary border border-dark/10 focus:border-secondary focus:ring-0 transition-colors text-dark font-light placeholder:text-dark/20"
-                    placeholder="090-1234-5678"
-                  />
-                </div>
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-sm font-medium mb-3 text-dark">
+                      電話番号
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-4 bg-light/30 border-2 border-dark/10 focus:border-secondary focus:outline-none transition-colors text-dark placeholder:text-dark/30"
+                      placeholder="090-1234-5678"
+                    />
+                  </div>
 
-                <div className="mb-12">
-                  <label className="block text-xs font-medium mb-3 text-dark/60 uppercase tracking-widest">
-                    Message <span className="text-secondary">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full px-4 py-4 bg-white border border-dark/10 focus:border-secondary focus:ring-0 transition-colors resize-none text-primary font-light placeholder:text-primary/40"
-                    placeholder="お問い合わせ内容をご記入ください..."
-                  />
-                </div>
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-medium mb-3 text-dark">
+                      お問い合わせ内容 <span className="text-secondary">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={6}
+                      className="w-full px-4 py-4 bg-primary border border-dark/10 focus:border-secondary focus:outline-none transition-colors resize-none text-dark placeholder:text-dark/40"
+                      placeholder="お問い合わせ内容をご記入ください..."
+                    />
+                  </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-white text-primary px-8 py-5 font-medium text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-secondary hover:text-dark hover:shadow-lg"
-                >
-                  Send Message
-                </button>
-              </form>
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full bg-dark text-white py-5 font-medium text-sm uppercase tracking-[0.2em] transition-all duration-300 hover:bg-secondary hover:text-primary"
+                  >
+                    送信する
+                  </button>
+                </form>
+
+                <p className="text-xs text-dark/40 mt-6 text-center">
+                  ※お問い合わせから3営業日以内にご返信いたします
+                </p>
+              </motion.div>
             </div>
 
-            <div className="mt-16 text-center text-dark/40 font-light">
-              <p className="text-sm mb-2">営業時間: 9:00 - 18:00（年中無休）</p>
-              <p className="text-xs tracking-wide">※お問い合わせから3営業日以内にご返信いたします。</p>
-            </div>
           </div>
+
         </div>
       </section>
 

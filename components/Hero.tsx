@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const heroImages = [
-  '/images/apart-0.png',
-  '/images/apart-1.png',
-  '/images/apart-2.png',
-  '/images/apart-3.png',
-  '/images/apart-4.png',
-  '/images/apart-5.png',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85&fit=crop', // Modern luxury apartment interior
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=85&fit=crop', // Elegant living room
+  'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=85&fit=crop', // Sophisticated bedroom
+  'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1920&q=85&fit=crop', // Premium kitchen
+  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1920&q=85&fit=crop', // Luxurious bathroom
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=85&fit=crop', // Modern architecture view
 ];
 
 export default function Hero() {
@@ -19,23 +19,30 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
+    }, 8000); // Increased to 8 seconds for better viewing
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Image Slideshow - Subtle Fade Only */}
+      {/* Image Slideshow - Enhanced with Ken Burns Effect */}
       {heroImages.map((img, idx) => (
         <motion.div
           key={idx}
           initial={{ opacity: 0 }}
           animate={{
             opacity: idx === currentIndex ? 1 : 0,
+            scale: idx === currentIndex ? [1, 1.08] : 1, // Subtle zoom effect
           }}
           transition={{
-            duration: 2,
-            ease: 'easeInOut',
+            opacity: {
+              duration: 2.5,
+              ease: [0.43, 0.13, 0.23, 0.96], // Custom easing for smooth fade
+            },
+            scale: {
+              duration: 8,
+              ease: 'linear', // Slow, continuous zoom
+            },
           }}
           className="absolute inset-0"
         >
@@ -46,6 +53,7 @@ export default function Hero() {
             className="object-cover"
             priority={idx === 0}
             quality={95}
+            unoptimized // Disable Next.js optimization for Unsplash URLs
           />
         </motion.div>
       ))}

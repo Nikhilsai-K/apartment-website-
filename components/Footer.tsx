@@ -23,86 +23,110 @@ export default function Footer() {
 
   return (
     <footer className="bg-light border-t border-dark/10 text-dark">
-      <div className="section-container py-16 md:py-24">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold font-serif tracking-wider mb-2 text-dark">
-                THE PARK HOUSE
-                <span className="text-secondary block mt-1 font-serif text-xl">東銀座</span>
-              </h3>
-              <div className="h-[1px] w-12 bg-secondary/50 mb-6" />
-            </div>
+      <div className="section-container py-8 pb-3">{/* Minimal bottom padding */}
+        {/* Main Footer Content */}
+        <div className="grid lg:grid-cols-12 gap-6 mb-6">
+          {/* Brand & Contact - Takes up more space */}
+          <div className="lg:col-span-5">
+            <h3 className="text-2xl font-bold font-serif tracking-wider text-dark mb-2">
+              THE PARK HOUSE
+              <span className="text-secondary ml-2 font-serif">東銀座</span>
+            </h3>
+            <div className="h-[2px] w-16 bg-secondary mb-4" />
 
-            <div className="text-dark/70 mb-8 leading-relaxed text-sm md:text-base font-light">
-              <p className="font-medium text-dark mb-2">お問い合わせ: リテラプロパティーズ銀座店</p>
-              <p>〒104-0061</p>
-              <p>東京都中央区銀座7-15-11 銀座7ビルディング10F</p>
-              <p className="mt-2">TEL: 050-5527-2652</p>
-              <p>受付時間: 10:00～20:00【年中無休】</p>
-            </div>
+            <div className="space-y-2 text-base text-dark/70 leading-relaxed">
+              <div>
+                <p className="font-semibold text-dark text-lg mb-1">リテラプロパティーズ銀座店</p>
+                <p>〒104-0061 東京都中央区銀座7-15-11</p>
+              </div>
 
-            <div className="space-y-2 text-xs md:text-sm text-dark/50 font-light">
-              <p>
-                <span className="text-dark/70 font-medium mr-2">管理:</span> 三菱地所コミュニティ
-              </p>
-              <p>
-                <span className="text-dark/70 font-medium mr-2">分譲:</span> 三菱地所レジデンス
-              </p>
-              <p>
-                <span className="text-dark/70 font-medium mr-2">施工:</span> 南海辰村建設
-              </p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 pt-1">
+                <div>
+                  <span className="text-sm text-dark/50 uppercase tracking-wider block mb-0.5">Phone</span>
+                  <a href="tel:050-5527-2652" className="text-secondary font-medium">
+                    050-5527-2652
+                  </a>
+                </div>
+                <div>
+                  <span className="text-sm text-dark/50 uppercase tracking-wider block mb-0.5">Hours</span>
+                  <p className="text-dark/70">10:00～20:00</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Property Links */}
-          <div>
-            <h4 className="text-sm font-bold mb-6 text-secondary uppercase tracking-widest">物件情報</h4>
-            <ul className="space-y-4">
-              {footerLinks.property.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="text-dark/60 hover:text-dark transition-colors duration-300 text-sm tracking-wide"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Navigation Links */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6">
+            {/* Property Info */}
+            <div>
+              <h4 className="text-base font-bold mb-3 text-dark uppercase tracking-wider">物件情報</h4>
+              <ul className="space-y-2">
+                {footerLinks.property.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      href={link.href}
+                      className="text-dark/60 text-base"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Services Links */}
-          <div>
-            <h4 className="text-sm font-bold mb-6 text-secondary uppercase tracking-widest">サービス</h4>
-            <ul className="space-y-4">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="text-dark/60 hover:text-dark transition-colors duration-300 text-sm tracking-wide"
-                  >
-                    {link.label}
-                  </Link>
+            {/* Services */}
+            <div>
+              <h4 className="text-base font-bold mb-3 text-dark uppercase tracking-wider">サービス</h4>
+              <ul className="space-y-2">
+                {footerLinks.services.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      href={link.href}
+                      className="text-dark/60 text-base"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Property Details */}
+            <div>
+              <h4 className="text-base font-bold mb-3 text-dark uppercase tracking-wider">詳細</h4>
+              <ul className="space-y-2 text-sm text-dark/60">
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary">▪</span> 管理: 三菱地所コミュニティ
                 </li>
-              ))}
-            </ul>
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary">▪</span> 分譲: 三菱地所レジデンス
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary">▪</span> 竣工: 2015年11月
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary">▪</span> 総戸数: 36戸 (13F-B1F)
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-dark/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-dark/40 tracking-wider">
+        {/* Bottom Bar - Compact */}
+        <div className="pt-4 border-t border-dark/10 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p className="text-sm text-dark/40 tracking-wide">
             &copy; {currentYear} The Park House Higashi-Ginza. All rights reserved.
           </p>
 
-          <Link
-            href="/"
-            className="text-dark/40 hover:text-dark transition-colors duration-300 text-xs tracking-widest uppercase"
-          >
-            Back to Top
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/"
+              className="text-dark/50 text-sm uppercase tracking-widest flex items-center gap-2"
+            >
+              <span>Top</span>
+              <span>↑</span>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
